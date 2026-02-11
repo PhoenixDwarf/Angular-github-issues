@@ -22,4 +22,5 @@ export default class IssuePage {
   );
 
   public issueQuery = this.issueService.issueQuery;
+  public commentsQuery = this.issueService.commentsQuery;
 }

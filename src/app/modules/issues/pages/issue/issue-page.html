@@ -8,3 +8,15 @@
 } @else {
   <issue-comment [issue]="issueQuery.data()!" />
 }
+
+<h2 class="mb-10 pt-10">Comments</h2>
+
+@if (commentsQuery.isLoading()) {
+  <p>Loading comments...</p>
+} @else {
+  @for (issue of commentsQuery.data(); track issue.id) {
+    <issue-comment [issue]="issue" />
+  } @empty {
+    <p>There are no comments.</p>
+  }
+}

@@ -7,11 +7,11 @@ const GITHUB_TOKEN = environment.gitHubToken;
 
 const errorMsg = "Couldn't retreive issue";
 
-export const getIssueByNumber = async (issueNumber: string): Promise<GitHubIssue> => {
+export const getIssueById = async (issueId: string): Promise<GitHubIssue> => {
   await sleep(1500);
 
   try {
-    const resp = await fetch(`${BASE_URL}/issues/${issueNumber}`, {
+    const resp = await fetch(`${BASE_URL}/issues/${issueId}`, {
       headers: {
         Authorization: `Bearer ${GITHUB_TOKEN}`,
       },
