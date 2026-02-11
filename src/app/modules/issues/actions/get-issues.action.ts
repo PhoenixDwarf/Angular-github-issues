@@ -19,7 +19,7 @@ export const getIssues = async (): Promise<GitHubIssue[]> => {
     if (!resp.ok) throw errorMsg;
 
     const issues: GitHubIssue[] = await resp.json();
-    console.log(issues);
+    // console.log(issues);
 
     return issues;
   } catch (error) {

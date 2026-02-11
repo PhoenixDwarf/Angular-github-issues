@@ -6,7 +6,7 @@ export const routes: Routes = [
     loadComponent: () => import('./modules/issues/pages/issues-list/issues-list-page'),
   },
   {
-    path: 'issue/:number',
+    path: 'issue/:id',
     loadComponent: () => import('./modules/issues/pages/issue/issue-page'),
   },
   {
