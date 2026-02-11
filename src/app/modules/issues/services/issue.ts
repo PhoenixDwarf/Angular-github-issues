@@ -8,7 +8,7 @@ import { getIssueByNumber } from '../actions';
 export class Issue {
   private issueId = signal<string | null>(null);
 
-  public issuesQuery = injectQuery(() => ({
+  public issueQuery = injectQuery(() => ({
     queryKey: ['issue', this.issueId()],
     queryFn: () => getIssueByNumber(this.issueId()!),
     enabled: this.issueId() !== null,

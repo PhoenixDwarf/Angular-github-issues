@@ -1,3 +1,10 @@
 <h1>
   Issue number: <small>{{ issueNumber() }}</small>
 </h1>
+<a routerLink="/" class="cursor-pointer">Go back</a>
+
+@if (!issueQuery.data()) {
+  <p>Loading...</p>
+} @else {
+  <issue-comment [issue]="issueQuery.data()!" />
+}
