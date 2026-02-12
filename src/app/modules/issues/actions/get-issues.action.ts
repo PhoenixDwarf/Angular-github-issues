@@ -1,17 +1,20 @@
 import { sleep } from '@helpers/sleep';
 import { environment } from 'src/environments/environment';
-import { GitHubIssue } from '../interfaces';
+import { GitHubIssue, State } from '../interfaces';
 
 const BASE_URL = environment.baseUrl;
 const GITHUB_TOKEN = environment.gitHubToken;
 
 const errorMsg = "Couldn't retreive issues";
 
-export const getIssues = async (): Promise<GitHubIssue[]> => {
+export const getIssues = async (state: State = State.All): Promise<GitHubIssue[]> => {
   await sleep(1500);
 
+  const params = new URLSearchParams();
+  params.append('state', state);
+
   try {
-    const resp = await fetch(`${BASE_URL}/issues`, {
+    const resp = await fetch(`${BASE_URL}/issues?${params}`, {
       headers: {
         Authorization: `Bearer ${GITHUB_TOKEN}`,
       },
