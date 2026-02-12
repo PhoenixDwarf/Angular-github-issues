@@ -1,6 +1,7 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { injectQuery, QueryClient } from '@tanstack/angular-query-experimental';
 import { getIssueById, getIssueCommentsById } from '../actions';
+import { GitHubIssue } from '../interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -31,6 +32,12 @@ export class Issue {
       queryKey: ['issue', issueId], // Stric type here, make sure you use the right type
       queryFn: () => getIssueById(issueId),
       staleTime: 1000 * 60 * 5, // How much time the state remains fresh/stale
+    });
+  }
+
+  setIssueData(issue: GitHubIssue) {
+    this.queryClient.setQueryData(['issue', issue.number.toString()], issue, {
+      updatedAt: Date.now() + 1000 * 60,
     });
   }
 }
