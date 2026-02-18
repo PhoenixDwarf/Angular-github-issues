@@ -8,7 +8,7 @@ import { State } from '../interfaces';
 })
 export class Issues {
   selectedState = signal<State>(State.All);
-  selectedLabels = signal(new Set<string>());
+  selectedLabels = signal(new Set<string>()); // {'a', 'b', 'c'}
 
   public labelsQuery = injectQuery(() => ({
     queryKey: ['labels'],
