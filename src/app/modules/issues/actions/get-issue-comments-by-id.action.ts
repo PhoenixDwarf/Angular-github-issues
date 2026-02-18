@@ -5,7 +5,7 @@ import { GitHubIssue } from '../interfaces';
 const BASE_URL = environment.baseUrl;
 const GITHUB_TOKEN = environment.gitHubToken;
 
-const errorMsg = "Couldn't retreive issue";
+const errorMsg = "Couldn't retreive issues";
 
 export const getIssueCommentsById = async (issueId: string): Promise<GitHubIssue[]> => {
   await sleep(1500);
