@@ -119,4 +119,25 @@ describe('IssuesService', () => {
     expect(typeof label.default).toBe('boolean'); // false
     expect(typeof label.description).toBe('string'); // 'issues related to accessibility (a11y)'
   });
+
+  /**
+   * Following test hits the backend as well, therefore we must create mocks to avoid it
+   */
+
+  it('Should set selectedLabels and get issues by Label', async () => {
+    const testLabel = 'Accessibility';
+    service.toggleLabel(testLabel);
+    expect(service.selectedLabels().has(testLabel)).toBe(true);
+
+    TestBed.tick();
+
+    const { data, status } = await service.issuesQuery.refetch();
+
+    expect(status).toBe('success');
+
+    data!.forEach((issue) => {
+      const hasLabel = issue.labels.some((label) => label.name === testLabel);
+      expect(hasLabel).toBe(true);
+    });
+  });
 });
