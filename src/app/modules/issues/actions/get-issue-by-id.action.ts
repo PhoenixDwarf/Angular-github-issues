@@ -13,13 +13,13 @@ export const getIssueById = async (issueId: string): Promise<GitHubIssue> => {
         Authorization: `Bearer ${GITHUB_TOKEN}`,
       },
     });
-    if (!resp.ok) throw errorMsg;
+    if (!resp.ok) throw errorMsg + ` #${issueId}. - !resp.ok`;
 
     const issue: GitHubIssue = await resp.json();
     // console.log(issue);
 
     return issue;
   } catch (error) {
-    throw errorMsg;
+    throw errorMsg + ` #${issueId}. - catch`;
   }
 };
