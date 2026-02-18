@@ -34,4 +34,25 @@ describe('IssuesService', () => {
     expect(service.labelsQuery.isLoading()).toBe(true);
     expect(service.issuesQuery.isLoading()).toBe(true);
   });
+
+  it('Should set selectedLabels', () => {
+    const label = 'Accessibility';
+
+    service.toggleLabel(label);
+    expect(service.selectedLabels().has(label)).toBe(true);
+
+    service.toggleLabel(label);
+    expect(service.selectedLabels().has(label)).toBe(false);
+  });
+
+  it('Should set selected state, OPEN, CLOSE, ALL', () => {
+    service.showIssuesByState(State.Closed);
+    expect(service.selectedState()).toBe(State.Closed);
+
+    service.showIssuesByState(State.Open);
+    expect(service.selectedState()).toBe(State.Open);
+
+    service.showIssuesByState(State.All);
+    expect(service.selectedState()).toBe(State.All);
+  });
 });
